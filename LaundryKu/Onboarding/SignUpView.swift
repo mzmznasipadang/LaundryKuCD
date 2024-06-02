@@ -5,58 +5,43 @@
 //  Created by Victor Chandra on 02/06/24.
 //
 
-import Foundation
 import SwiftUI
-import AuthenticationServices
 import Firebase
 import FirebaseAuth
-import GoogleSignIn
 
 struct SignUpView: View {
     @EnvironmentObject var globalData: GlobalData
-    @State private var name: String = " "
     @State private var email: String = ""
     @State private var password: String = ""
-    
+    @State private var confirmPassword: String = ""
+    @State private var showAlert = false
+    @State private var alertMessage = ""
+
     var body: some View {
         VStack(spacing: 20) {
             Spacer()
-            
-            // SignUp Title
+
+            // Sign Up Title
             Text("Sign Up")
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .padding()
-            
-            // Nama?
-            VStack(alignment: .leading) {
-                Text("Enter Your Name")
-                    .font(.headline)
-                    .fontWeight(.medium)
-                    .foregroundColor(.black)
-                    .padding(.leading, 20.0)
-                TextField("Fullname", text: $name)
-                    .padding()
-                    .background(Color(.systemGray6))
-                    .cornerRadius(10)
-                    .padding(.horizontal)
-            }
-            
-            // Email
+
+            // Email Field
             VStack(alignment: .leading) {
                 Text("Enter Your Email")
                     .font(.headline)
                     .fontWeight(.medium)
                     .foregroundColor(.black)
                     .padding(.leading, 20.0)
-                SecureField("Email", text: $email)
+                TextField("Email", text: $email)
                     .padding()
                     .background(Color(.systemGray6))
                     .cornerRadius(10)
                     .padding(.horizontal)
             }
-            
-            // Password
+
+            // Password Field
             VStack(alignment: .leading) {
                 Text("Enter Your Password")
                     .font(.headline)
@@ -69,10 +54,24 @@ struct SignUpView: View {
                     .cornerRadius(10)
                     .padding(.horizontal)
             }
-            
-            // Login Button
+
+            // Confirm Password Field
+            VStack(alignment: .leading) {
+                Text("Confirm Your Password")
+                    .font(.headline)
+                    .fontWeight(.medium)
+                    .foregroundColor(.black)
+                    .padding(.leading, 20.0)
+                SecureField("Confirm Password", text: $confirmPassword)
+                    .padding()
+                    .background(Color(.systemGray6))
+                    .cornerRadius(10)
+                    .padding(.horizontal)
+            }
+
+            // Sign Up Button
             Button(action: {
-                // Handle login
+                registerUser()
             }) {
                 Text("Sign Up")
                     .font(.title2)
@@ -84,103 +83,56 @@ struct SignUpView: View {
                     .cornerRadius(10)
                     .padding(.horizontal)
             }
-            
-            // Or Text
-            Text("or")
-                .foregroundColor(.gray)
-                .padding(.vertical)
-            
-            // Social Login Buttons
-            HStack(spacing:20) {
-                // Apple Sign In Button
-                SignInWithAppleButton(
-                    .signIn,
-                    onRequest: { request in
-                        request.requestedScopes = [.fullName, .email]
-                    },
-                    onCompletion: { result in
-                        switch result {
-                        case .success(let authResults):
-                            print("Authorization successful: \(authResults)")
-                            // Handle successful authorization
-                        case .failure(let error):
-                            print("Authorization failed: \(error.localizedDescription)")
-                            // Handle error
-                        }
-                    }
-                )
-                .frame(width: 150, height: 50)
-                .background(Color.black)
-                .clipShape(RoundedRectangle(cornerSize: CGSize(width: 15, height: 50) ))
-                
-                // Google Login Button
-                Button(action: {
-                    handleGoogleSignIn()
-                }) {
-                    Image("googlelogo") // Use the appropriate image for Google
-                        .resizable()
-                        .frame(width: 24, height: 24)
-                        .foregroundColor(.white)
-                        .frame(width: 50, height: 50)
-                        .background(Color.white)
-                        .clipShape(Circle())
-                        .overlay(Circle().stroke(Color.gray, lineWidth: 1))
-                }
+
+            // Back to Login Button
+            Button(action: {
+                globalData.isOnboardingCompleted = true
+            }) {
+                Text("Already have an account? Login")
+                    .foregroundColor(.blue)
             }
-            .padding()
-            
+
             Spacer()
         }
-    }
-    
-    func handleGoogleSignIn() {
-        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-        _ = GIDConfiguration(clientID: clientID)
-        
-        guard let presentingViewController = getRootViewController() else { return }
-        
-        GIDSignIn.sharedInstance.signIn(withPresenting: presentingViewController) { [self] result, error in
-            authenticateUser(for: result?.user, with: error)
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("Error"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
         }
     }
-    
-    func authenticateUser(for user: GIDGoogleUser?, with error: Error?) {
-        if let error = error {
-            print("Error signing in with Google: \(error.localizedDescription)")
+
+    func registerUser() {
+        guard password == confirmPassword else {
+            alertMessage = "Passwords do not match"
+            showAlert = true
             return
         }
-        
-        guard let user = user else { return }
-        let idToken = user.idToken?.tokenString
-        let accessToken = user.accessToken.tokenString
-        
-        let credential = GoogleAuthProvider.credential(withIDToken: idToken!, accessToken: accessToken)
-        
-        Auth.auth().signIn(with: credential) { result, error in
+
+        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if let error = error {
-                print("Firebase sign in with Google failed: \(error.localizedDescription)")
+                alertMessage = error.localizedDescription
+                showAlert = true
                 return
             }
-            
-            print("User signed in with Google")
-            globalData.isLoggedIn = true
+
+            guard let uid = authResult?.user.uid else { return }
+
+            let db = Firestore.firestore()
+            db.collection("users").document(uid).setData([
+                "email": email,
+                "uid": uid
+            ]) { error in
+                if let error = error {
+                    alertMessage = error.localizedDescription
+                    showAlert = true
+                    return
+                }
+                globalData.isLoggedIn = true
+            }
         }
-    }
-    
-    func getRootViewController() -> UIViewController? {
-        guard let screen = UIApplication.shared.connectedScenes.first as? UIWindowScene else {
-            return nil
-        }
-        guard let rootViewController = screen.windows.first?.rootViewController else {
-            return nil
-        }
-        return rootViewController
     }
 }
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpView()
-            .environmentObject(GlobalData())
+        SignUpView().environmentObject(GlobalData())
     }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		581E451A2C0CE9E900F9567D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 581E45192C0CE9E900F9567D /* .gitignore */; };
 		588827D72C0C801600C0A821 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 588827D62C0C801600C0A821 /* FirebaseAnalytics */; };
 		588827D92C0C801600C0A821 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 588827D82C0C801600C0A821 /* FirebaseAnalyticsOnDeviceConversion */; };
 		588827DB2C0C801600C0A821 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 588827DA2C0C801600C0A821 /* FirebaseAnalyticsSwift */; };
@@ -31,11 +32,8 @@
 		588828022C0C874E00C0A821 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 588828012C0C874E00C0A821 /* FirebaseFirestoreSwift */; };
 		588828042C0C874E00C0A821 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 588828032C0C874E00C0A821 /* FirebaseFunctions */; };
 		588828062C0C874E00C0A821 /* FirebaseFunctionsCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 588828052C0C874E00C0A821 /* FirebaseFunctionsCombine-Community */; };
-		588828082C0C874E00C0A821 /* FirebaseInAppMessaging-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 588828072C0C874E00C0A821 /* FirebaseInAppMessaging-Beta */; };
-		5888280A2C0C874E00C0A821 /* FirebaseInAppMessagingSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 588828092C0C874E00C0A821 /* FirebaseInAppMessagingSwift-Beta */; };
 		5888280C2C0C874E00C0A821 /* FirebaseInstallations in Frameworks */ = {isa = PBXBuildFile; productRef = 5888280B2C0C874E00C0A821 /* FirebaseInstallations */; };
 		5888280E2C0C874E00C0A821 /* FirebaseMLModelDownloader in Frameworks */ = {isa = PBXBuildFile; productRef = 5888280D2C0C874E00C0A821 /* FirebaseMLModelDownloader */; };
-		588828102C0C874E00C0A821 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 5888280F2C0C874E00C0A821 /* FirebaseMessaging */; };
 		588828122C0C874E00C0A821 /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = 588828112C0C874E00C0A821 /* FirebasePerformance */; };
 		588828142C0C874E00C0A821 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 588828132C0C874E00C0A821 /* FirebaseRemoteConfig */; };
 		588828162C0C874E00C0A821 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 588828152C0C874E00C0A821 /* FirebaseRemoteConfigSwift */; };
@@ -43,6 +41,9 @@
 		5888281A2C0C874E00C0A821 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 588828192C0C874E00C0A821 /* FirebaseStorageCombine-Community */; };
 		5888281C2C0C874E00C0A821 /* FirebaseVertexAI-Preview in Frameworks */ = {isa = PBXBuildFile; productRef = 5888281B2C0C874E00C0A821 /* FirebaseVertexAI-Preview */; };
 		58CBCBE82C0CA20900F5391A /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CBCBE72C0CA20900F5391A /* SignUpView.swift */; };
+		58CBCBEE2C0CD61700F5391A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 58CBCBED2C0CD61700F5391A /* GoogleService-Info.plist */; };
+		58CBCBEF2C0CD61700F5391A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 58CBCBED2C0CD61700F5391A /* GoogleService-Info.plist */; };
+		58CBCBF02C0CD61700F5391A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 58CBCBED2C0CD61700F5391A /* GoogleService-Info.plist */; };
 		58CCB9AE2C0B7DB200DDF434 /* LaundryKuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CCB9AD2C0B7DB200DDF434 /* LaundryKuApp.swift */; };
 		58CCB9B02C0B7DB200DDF434 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CCB9AF2C0B7DB200DDF434 /* ContentView.swift */; };
 		58CCB9B22C0B7DB400DDF434 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58CCB9B12C0B7DB400DDF434 /* Assets.xcassets */; };
@@ -58,7 +59,6 @@
 		58CCB9E32C0C55B500DDF434 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CCB9E22C0C55B500DDF434 /* SplashView.swift */; };
 		58CCB9E72C0C570500DDF434 /* GlobalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CCB9E62C0C570500DDF434 /* GlobalData.swift */; };
 		58CCB9EA2C0C7B2200DDF434 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CCB9E92C0C7B2100DDF434 /* AppDelegate.swift */; };
-		58CCB9EC2C0C7BDE00DDF434 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 58CCB9EB2C0C7BDE00DDF434 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,7 +79,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		581E45192C0CE9E900F9567D /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		58CBCBE72C0CA20900F5391A /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		58CBCBED2C0CD61700F5391A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		58CBCBF92C0CE24D00F5391A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		58CCB9AA2C0B7DB200DDF434 /* LaundryKu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LaundryKu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58CCB9AD2C0B7DB200DDF434 /* LaundryKuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaundryKuApp.swift; sourceTree = "<group>"; };
 		58CCB9AF2C0B7DB200DDF434 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -99,7 +102,6 @@
 		58CCB9E62C0C570500DDF434 /* GlobalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalData.swift; sourceTree = "<group>"; };
 		58CCB9E82C0C7AED00DDF434 /* LaundryKu.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LaundryKu.entitlements; sourceTree = "<group>"; };
 		58CCB9E92C0C7B2100DDF434 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		58CCB9EB2C0C7BDE00DDF434 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,14 +116,12 @@
 				5888280C2C0C874E00C0A821 /* FirebaseInstallations in Frameworks */,
 				588827F02C0C874E00C0A821 /* FirebaseAppDistribution-Beta in Frameworks */,
 				5888281A2C0C874E00C0A821 /* FirebaseStorageCombine-Community in Frameworks */,
-				588828082C0C874E00C0A821 /* FirebaseInAppMessaging-Beta in Frameworks */,
 				588827F42C0C874E00C0A821 /* FirebaseAuthCombine-Community in Frameworks */,
 				588828182C0C874E00C0A821 /* FirebaseStorage in Frameworks */,
 				5888281C2C0C874E00C0A821 /* FirebaseVertexAI-Preview in Frameworks */,
 				588828022C0C874E00C0A821 /* FirebaseFirestoreSwift in Frameworks */,
 				588828162C0C874E00C0A821 /* FirebaseRemoteConfigSwift in Frameworks */,
 				588827E42C0C840700C0A821 /* GoogleSignInSwift in Frameworks */,
-				5888280A2C0C874E00C0A821 /* FirebaseInAppMessagingSwift-Beta in Frameworks */,
 				588828002C0C874E00C0A821 /* FirebaseFirestoreCombine-Community in Frameworks */,
 				588828142C0C874E00C0A821 /* FirebaseRemoteConfig in Frameworks */,
 				588827F22C0C874E00C0A821 /* FirebaseAuth in Frameworks */,
@@ -139,7 +139,6 @@
 				588827F62C0C874E00C0A821 /* FirebaseCrashlytics in Frameworks */,
 				588827DD2C0C801600C0A821 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				588827E22C0C840700C0A821 /* GoogleSignIn in Frameworks */,
-				588828102C0C874E00C0A821 /* FirebaseMessaging in Frameworks */,
 				588828062C0C874E00C0A821 /* FirebaseFunctionsCombine-Community in Frameworks */,
 				5888280E2C0C874E00C0A821 /* FirebaseMLModelDownloader in Frameworks */,
 			);
@@ -173,6 +172,7 @@
 		58CCB9A12C0B7DB200DDF434 = {
 			isa = PBXGroup;
 			children = (
+				581E45192C0CE9E900F9567D /* .gitignore */,
 				58CCB9AC2C0B7DB200DDF434 /* LaundryKu */,
 				58CCB9C22C0B7DB400DDF434 /* LaundryKuTests */,
 				58CCB9CC2C0B7DB400DDF434 /* LaundryKuUITests */,
@@ -193,7 +193,8 @@
 		58CCB9AC2C0B7DB200DDF434 /* LaundryKu */ = {
 			isa = PBXGroup;
 			children = (
-				58CCB9EB2C0C7BDE00DDF434 /* GoogleService-Info.plist */,
+				58CBCBF92C0CE24D00F5391A /* Info.plist */,
+				58CBCBED2C0CD61700F5391A /* GoogleService-Info.plist */,
 				58CCB9E82C0C7AED00DDF434 /* LaundryKu.entitlements */,
 				58CCB9AD2C0B7DB200DDF434 /* LaundryKuApp.swift */,
 				58CCB9AF2C0B7DB200DDF434 /* ContentView.swift */,
@@ -294,11 +295,8 @@
 				588828012C0C874E00C0A821 /* FirebaseFirestoreSwift */,
 				588828032C0C874E00C0A821 /* FirebaseFunctions */,
 				588828052C0C874E00C0A821 /* FirebaseFunctionsCombine-Community */,
-				588828072C0C874E00C0A821 /* FirebaseInAppMessaging-Beta */,
-				588828092C0C874E00C0A821 /* FirebaseInAppMessagingSwift-Beta */,
 				5888280B2C0C874E00C0A821 /* FirebaseInstallations */,
 				5888280D2C0C874E00C0A821 /* FirebaseMLModelDownloader */,
-				5888280F2C0C874E00C0A821 /* FirebaseMessaging */,
 				588828112C0C874E00C0A821 /* FirebasePerformance */,
 				588828132C0C874E00C0A821 /* FirebaseRemoteConfig */,
 				588828152C0C874E00C0A821 /* FirebaseRemoteConfigSwift */,
@@ -398,9 +396,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				581E451A2C0CE9E900F9567D /* .gitignore in Resources */,
 				58CCB9B52C0B7DB400DDF434 /* Preview Assets.xcassets in Resources */,
+				58CBCBEE2C0CD61700F5391A /* GoogleService-Info.plist in Resources */,
 				58CCB9B22C0B7DB400DDF434 /* Assets.xcassets in Resources */,
-				58CCB9EC2C0C7BDE00DDF434 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +407,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58CBCBEF2C0CD61700F5391A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +415,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58CBCBF02C0CD61700F5391A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,6 +604,7 @@
 				DEVELOPMENT_TEAM = T8PA28UZH7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LaundryKu/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -635,6 +637,7 @@
 				DEVELOPMENT_TEAM = T8PA28UZH7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LaundryKu/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -880,14 +883,6 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = "FirebaseFunctionsCombine-Community";
 		};
-		588828072C0C874E00C0A821 /* FirebaseInAppMessaging-Beta */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = "FirebaseInAppMessaging-Beta";
-		};
-		588828092C0C874E00C0A821 /* FirebaseInAppMessagingSwift-Beta */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = "FirebaseInAppMessagingSwift-Beta";
-		};
 		5888280B2C0C874E00C0A821 /* FirebaseInstallations */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = FirebaseInstallations;
@@ -895,10 +890,6 @@
 		5888280D2C0C874E00C0A821 /* FirebaseMLModelDownloader */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = FirebaseMLModelDownloader;
-		};
-		5888280F2C0C874E00C0A821 /* FirebaseMessaging */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = FirebaseMessaging;
 		};
 		588828112C0C874E00C0A821 /* FirebasePerformance */ = {
 			isa = XCSwiftPackageProductDependency;

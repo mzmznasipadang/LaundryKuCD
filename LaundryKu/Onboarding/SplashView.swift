@@ -13,7 +13,7 @@ struct SplashView: View {
     @State private var size = 0.1
     @State private var opacity = 0.5
     @EnvironmentObject var globalData: GlobalData
-
+    
     var body: some View {
         if isActive {
             if globalData.isLoggedIn {
@@ -29,20 +29,11 @@ struct SplashView: View {
                     Image("logo")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 500, height: 500)
-                        .scaleEffect(size)
-                        .opacity(opacity)
-                        .onAppear {
-                            withAnimation(.easeIn(duration: 1.5)) {
-                                self.size = 0.6
-                                self.opacity = 1.0
-                            }
-                        }
-                }
-                .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                        self.isActive = true
-                    }
+                        .frame(width: 200, height: 200)
+                    Text("LaundryKu")
+                        .font(.largeTitle)
+                        .fontWeight(.semibold)
+                        .foregroundColor(Color("AccentColor"))
                 }
             }
         }

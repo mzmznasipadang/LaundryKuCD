@@ -15,105 +15,124 @@ struct LoginView: View {
     @EnvironmentObject var globalData: GlobalData
     @State private var email: String = ""
     @State private var password: String = ""
-    
+    @State private var showSignUp = false
+
     var body: some View {
-        VStack(spacing: 20) {
-            Spacer()
-            
-            // Login Title
-            Text("Login")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding()
-            
-            // Email Field
-            VStack(alignment: .leading) {
-                Text("Enter Your Email")
-                    .font(.headline)
-                    .fontWeight(.medium)
-                    .foregroundColor(.black)
-                    .padding(.leading, 20.0)
-                TextField("Email", text: $email)
-                    .padding()
-                    .background(Color(.systemGray6))
-                    .cornerRadius(10)
-                    .padding(.horizontal)
-            }
-            
-            // Password Field
-            VStack(alignment: .leading) {
-                Text("Enter Your Password")
-                    .font(.headline)
-                    .fontWeight(.medium)
-                    .foregroundColor(.black)
-                    .padding(.leading, 20.0)
-                SecureField("Password", text: $password)
-                    .padding()
-                    .background(Color(.systemGray6))
-                    .cornerRadius(10)
-                    .padding(.horizontal)
-            }
-            
-            // Login Button
-            Button(action: {
-                // Handle login
-            }) {
-                Text("Login")
-                    .font(.title2)
-                    .fontWeight(.semibold)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-                    .padding(.horizontal)
-            }
-            
-            // Or Text
-            Text("or")
-                .foregroundColor(.gray)
-                .padding(.vertical)
-            
-            // Social Login Buttons
-            HStack(spacing:20) {
-                // Apple Sign In Button
-                SignInWithAppleButton(
-                    .signIn,
-                    onRequest: { request in
-                        request.requestedScopes = [.fullName, .email]
-                    },
-                    onCompletion: { result in
-                        switch result {
-                        case .success(let authResults):
-                            print("Authorization successful: \(authResults)")
-                            // Handle successful authorization
-                        case .failure(let error):
-                            print("Authorization failed: \(error.localizedDescription)")
-                            // Handle error
-                        }
-                    }
-                )
-                .frame(width: 150, height: 50)
-                .background(Color.black)
-                .clipShape(RoundedRectangle(cornerSize: CGSize(width: 15, height: 50) ))
+        NavigationStack {
+            VStack(spacing: 20) {
+                Spacer()
                 
-                // Google Login Button
-                Button(action: {
-                    handleGoogleSignIn()
-                }) {
-                    Image("googlelogo") // Use the appropriate image for Google
-                        .resizable()
-                        .frame(width: 24, height: 24)
-                        .foregroundColor(.white)
-                        .frame(width: 50, height: 50)
-                        .background(Color.white)
-                        .clipShape(Circle())
-                        .overlay(Circle().stroke(Color.gray, lineWidth: 1))
+                // Login Title
+                Text("Login")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .padding()
+                
+                // Email Field
+                VStack(alignment: .leading) {
+                    Text("Enter Your Email")
+                        .font(.headline)
+                        .fontWeight(.medium)
+                        .foregroundColor(.black)
+                        .padding(.leading, 20.0)
+                    TextField("Email", text: $email)
+                        .padding()
+                        .background(Color(.systemGray6))
+                        .cornerRadius(10)
+                        .padding(.horizontal)
                 }
+                
+                // Password Field
+                VStack(alignment: .leading) {
+                    Text("Enter Your Password")
+                        .font(.headline)
+                        .fontWeight(.medium)
+                        .foregroundColor(.black)
+                        .padding(.leading, 20.0)
+                    SecureField("Password", text: $password)
+                        .padding()
+                        .background(Color(.systemGray6))
+                        .cornerRadius(10)
+                        .padding(.horizontal)
+                }
+                
+                // Login Button
+                Button(action: {
+                    loginUser()
+                }) {
+                    Text("Login")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                        .padding(.horizontal)
+                }
+                
+                // Navigate to SignUpView
+                NavigationLink(destination: SignUpView().environmentObject(globalData)) {
+                    Text("Don't have an account? Register")
+                        .foregroundColor(.blue)
+                }
+                
+                // Or Text
+                Text("or")
+                    .foregroundColor(.gray)
+                    .padding(.vertical)
+                
+                // Social Login Buttons
+                HStack(spacing:20) {
+                    // Apple Sign In Button
+                    SignInWithAppleButton(
+                        .signIn,
+                        onRequest: { request in
+                            request.requestedScopes = [.fullName, .email]
+                        },
+                        onCompletion: { result in
+                            switch result {
+                            case .success(let authResults):
+                                print("Authorization successful: \(authResults)")
+                                // Handle successful authorization
+                            case .failure(let error):
+                                print("Authorization failed: \(error.localizedDescription)")
+                                // Handle error
+                            }
+                        }
+                    )
+                    .frame(width: 150, height: 50)
+                    .background(Color.black)
+                    .clipShape(RoundedRectangle(cornerSize: CGSize(width: 15, height: 50)))
+                    
+                    // Google Login Button
+                    Button(action: {
+                        handleGoogleSignIn()
+                    }) {
+                        Image("googlelogo") // Use the appropriate image for Google
+                            .resizable()
+                            .frame(width: 24, height: 24)
+                            .foregroundColor(.white)
+                            .frame(width: 50, height: 50)
+                            .background(Color.white)
+                            .clipShape(Circle())
+                            .overlay(Circle().stroke(Color.gray, lineWidth: 1))
+                    }
+                }
+                .padding()
+                
+                Spacer()
             }
-            .padding()
-            
-            Spacer()
+        }
+    }
+    
+    func loginUser() {
+        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            globalData.isLoggedIn = true
         }
     }
     

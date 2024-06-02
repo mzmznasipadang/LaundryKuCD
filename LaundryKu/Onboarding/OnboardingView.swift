@@ -20,14 +20,14 @@ struct OnboardingView: View {
     @EnvironmentObject var globalData: GlobalData
     @State private var currentPage = 0
     @State private var showAlert = false
-    
+
     let slides = [
         OnboardingSlide(imageName: "onboarding_image1", title: "Shop better, look good.", description: "10,000 brands up to 70% off retail price, all great for the planet"),
         OnboardingSlide(imageName: "onboarding_image2", title: "Don’t worry, buy happy.", description: "Because millions of shoppers trust our quality control service."),
         OnboardingSlide(imageName: "onboarding_image3", title: "Sell on, join us.", description: "With 15M members, you’ll be sure you find someone who loves your items."),
         OnboardingSlide(imageName: "onboarding_image4", title: "Get updates on items you buy and sell.", description: "Get notifications about activity on your listings and price drops on items you love.")
     ]
-    
+
     var body: some View {
         GeometryReader { geometry in
             ZStack {
@@ -100,7 +100,7 @@ struct OnboardingView: View {
                                         requestNotificationPermission()
                                     }),
                                     secondaryButton: .cancel(Text("Don't Allow"), action: {
-                                        globalData.isLoggedIn = true // Navigate to the next view if needed
+                                        globalData.isOnboardingCompleted = true
                                     })
                                 )
                             }
@@ -121,7 +121,7 @@ struct OnboardingView: View {
                 } else {
                     print("Permission denied")
                 }
-                globalData.isLoggedIn = true // Navigate to the next view if needed
+                globalData.isOnboardingCompleted = true
             }
         }
     }

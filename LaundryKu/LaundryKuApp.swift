@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import FirebaseCore
+import GoogleSignIn
 
 @main
 struct LaundryKuApp: App {
@@ -14,12 +16,13 @@ struct LaundryKuApp: App {
 
     var body: some Scene {
         WindowGroup {
-            if globalData.isLoggedIn {
-                HomeView().environmentObject(globalData)
-            } else {
-                NavigationView {
-                    SplashView()
-                        .environmentObject(globalData)
+            NavigationStack {
+                if globalData.isLoggedIn {
+                    HomeView().environmentObject(globalData)
+                } else if globalData.isOnboardingCompleted {
+                    LoginView().environmentObject(globalData)
+                } else {
+                    OnboardingView().environmentObject(globalData)
                 }
             }
         }
