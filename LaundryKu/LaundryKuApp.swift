@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct LaundryKuApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject private var globalData = GlobalData()
 
     var body: some Scene {

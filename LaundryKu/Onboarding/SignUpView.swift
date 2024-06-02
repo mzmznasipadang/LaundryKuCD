@@ -1,18 +1,20 @@
 //
-//  LoginView.swift
+//  SignUpView.swift
 //  LaundryKu
 //
-//  Created by Victor Chandra on 01/06/24.
+//  Created by Victor Chandra on 02/06/24.
 //
 
+import Foundation
 import SwiftUI
 import AuthenticationServices
 import Firebase
 import FirebaseAuth
 import GoogleSignIn
 
-struct LoginView: View {
+struct SignUpView: View {
     @EnvironmentObject var globalData: GlobalData
+    @State private var name: String = " "
     @State private var email: String = ""
     @State private var password: String = ""
     
@@ -20,27 +22,41 @@ struct LoginView: View {
         VStack(spacing: 20) {
             Spacer()
             
-            // Login Title
-            Text("Login")
+            // SignUp Title
+            Text("Sign Up")
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .padding()
             
-            // Email Field
+            // Nama?
             VStack(alignment: .leading) {
-                Text("Enter Your Email")
+                Text("Enter Your Name")
                     .font(.headline)
                     .fontWeight(.medium)
                     .foregroundColor(.black)
                     .padding(.leading, 20.0)
-                TextField("Email", text: $email)
+                TextField("Fullname", text: $name)
                     .padding()
                     .background(Color(.systemGray6))
                     .cornerRadius(10)
                     .padding(.horizontal)
             }
             
-            // Password Field
+            // Email
+            VStack(alignment: .leading) {
+                Text("Enter Your Email")
+                    .font(.headline)
+                    .fontWeight(.medium)
+                    .foregroundColor(.black)
+                    .padding(.leading, 20.0)
+                SecureField("Email", text: $email)
+                    .padding()
+                    .background(Color(.systemGray6))
+                    .cornerRadius(10)
+                    .padding(.horizontal)
+            }
+            
+            // Password
             VStack(alignment: .leading) {
                 Text("Enter Your Password")
                     .font(.headline)
@@ -58,7 +74,7 @@ struct LoginView: View {
             Button(action: {
                 // Handle login
             }) {
-                Text("Login")
+                Text("Sign Up")
                     .font(.title2)
                     .fontWeight(.semibold)
                     .padding()
@@ -162,9 +178,9 @@ struct LoginView: View {
     }
 }
 
-struct LoginView_Previews: PreviewProvider {
+struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        SignUpView()
             .environmentObject(GlobalData())
     }
 }
