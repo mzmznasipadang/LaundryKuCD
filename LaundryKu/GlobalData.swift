@@ -6,3 +6,9 @@
 //
 
 import Foundation
+import Combine
+
+class GlobalData: ObservableObject {
+    @Published var isLoggedIn: Bool = false
+    @Published var someData: String = "Initial Data"
+}

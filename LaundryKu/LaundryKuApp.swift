@@ -9,12 +9,18 @@ import SwiftUI
 
 @main
 struct LaundryKuApp: App {
-    let persistenceController = PersistenceController.shared
+    @StateObject private var globalData = GlobalData()
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            if globalData.isLoggedIn {
+                HomeView().environmentObject(globalData)
+            } else {
+                NavigationView {
+                    SplashView()
+                        .environmentObject(globalData)
+                }
+            }
         }
     }
 }
