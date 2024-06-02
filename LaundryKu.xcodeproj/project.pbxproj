@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		581E451A2C0CE9E900F9567D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 581E45192C0CE9E900F9567D /* .gitignore */; };
+		581E451C2C0CEA8500F9567D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 581E451B2C0CEA8500F9567D /* README.md */; };
 		588827D72C0C801600C0A821 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 588827D62C0C801600C0A821 /* FirebaseAnalytics */; };
 		588827D92C0C801600C0A821 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 588827D82C0C801600C0A821 /* FirebaseAnalyticsOnDeviceConversion */; };
 		588827DB2C0C801600C0A821 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 588827DA2C0C801600C0A821 /* FirebaseAnalyticsSwift */; };
@@ -80,6 +81,7 @@
 
 /* Begin PBXFileReference section */
 		581E45192C0CE9E900F9567D /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		581E451B2C0CEA8500F9567D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		58CBCBE72C0CA20900F5391A /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		58CBCBED2C0CD61700F5391A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		58CBCBF92C0CE24D00F5391A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 		58CCB9A12C0B7DB200DDF434 = {
 			isa = PBXGroup;
 			children = (
+				581E451B2C0CEA8500F9567D /* README.md */,
 				581E45192C0CE9E900F9567D /* .gitignore */,
 				58CCB9AC2C0B7DB200DDF434 /* LaundryKu */,
 				58CCB9C22C0B7DB400DDF434 /* LaundryKuTests */,
@@ -398,6 +401,7 @@
 			files = (
 				581E451A2C0CE9E900F9567D /* .gitignore in Resources */,
 				58CCB9B52C0B7DB400DDF434 /* Preview Assets.xcassets in Resources */,
+				581E451C2C0CEA8500F9567D /* README.md in Resources */,
 				58CBCBEE2C0CD61700F5391A /* GoogleService-Info.plist in Resources */,
 				58CCB9B22C0B7DB400DDF434 /* Assets.xcassets in Resources */,
 			);
