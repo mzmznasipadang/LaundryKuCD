@@ -11,91 +11,83 @@ import FirebaseAuth
 
 struct SignUpView: View {
     @EnvironmentObject var globalData: GlobalData
+    @State private var name: String = ""
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var confirmPassword: String = ""
+    @State private var acceptedTerms: Bool = false
     @State private var showAlert = false
     @State private var alertMessage = ""
 
     var body: some View {
-        VStack(spacing: 20) {
-            Spacer()
+        NavigationStack {
+            ZStack {
+                Image("ob2") // Background image for the signup screen
+                    .resizable()
+                    .scaledToFill()
+                    .edgesIgnoringSafeArea(.all)
 
-            // Sign Up Title
-            Text("Sign Up")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding()
+                VStack {
+                    Spacer()
 
-            // Email Field
-            VStack(alignment: .leading) {
-                Text("Enter Your Email")
-                    .font(.headline)
-                    .fontWeight(.medium)
-                    .foregroundColor(.black)
-                    .padding(.leading, 20.0)
-                TextField("Email", text: $email)
-                    .padding()
-                    .background(Color(.systemGray6))
-                    .cornerRadius(10)
-                    .padding(.horizontal)
+                    GeometryReader { geometry in
+                        VStack(spacing: 20) {
+                            Text("Sign Up")
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
+                                .foregroundColor(.accentColor)
+                                .padding(.bottom, 20)
+
+                            InputField(title: "First name", value: $name)
+                            InputField(title: "Email", value: $email)
+                            InputField(title: "Password", value: $password, isSecure: true)
+                            InputField(title: "Confirm Password", value: $confirmPassword, isSecure: true)
+
+                            HStack {
+                                Toggle(isOn: $acceptedTerms) {
+                                    Text("I accept the ")
+                                    + Text("Terms")
+                                        .underline()
+                                        .foregroundColor(.blue)
+                                    + Text(" and I have read the ")
+                                    + Text("Privacy Policy & cookies")
+                                        .underline()
+                                        .foregroundColor(.blue)
+                                }
+                                .padding(.horizontal)
+                                .toggleStyle(SwitchToggleStyle(tint: .blue))
+                            }
+                            .padding(.horizontal, 20)
+
+                            Button(action: registerUser) {
+                                Text("Join us")
+                                    .font(.title2)
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.white)
+                                    .padding()
+                                    .frame(maxWidth: .infinity)
+                                    .background(Color.blue)
+                                    .cornerRadius(10)
+                                    .shadow(radius: 2)
+                            }
+                            .padding(.vertical, 20)
+                        }
+                        .padding()
+                        .background(Color.white.opacity(0.95))
+                        .cornerRadius(20)
+                        .shadow(radius: 10)
+                        .frame(width: geometry.size.width * 0.35)
+                        .position(x: geometry.size.width / 2, y: geometry.size.height - (geometry.size.height * 0.39))
+                    }
+                    .frame(height: UIScreen.main.bounds.height * 0.8) // Adjust height as necessary
+                }
+                .padding(.bottom, 40)
             }
-
-            // Password Field
-            VStack(alignment: .leading) {
-                Text("Enter Your Password")
-                    .font(.headline)
-                    .fontWeight(.medium)
-                    .foregroundColor(.black)
-                    .padding(.leading, 20.0)
-                SecureField("Password", text: $password)
-                    .padding()
-                    .background(Color(.systemGray6))
-                    .cornerRadius(10)
-                    .padding(.horizontal)
+            .navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
+            .alert(isPresented: $showAlert) {
+                Alert(title: Text("Error"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
             }
-
-            // Confirm Password Field
-            VStack(alignment: .leading) {
-                Text("Confirm Your Password")
-                    .font(.headline)
-                    .fontWeight(.medium)
-                    .foregroundColor(.black)
-                    .padding(.leading, 20.0)
-                SecureField("Confirm Password", text: $confirmPassword)
-                    .padding()
-                    .background(Color(.systemGray6))
-                    .cornerRadius(10)
-                    .padding(.horizontal)
-            }
-
-            // Sign Up Button
-            Button(action: {
-                registerUser()
-            }) {
-                Text("Sign Up")
-                    .font(.title2)
-                    .fontWeight(.semibold)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-                    .padding(.horizontal)
-            }
-
-            // Back to Login Button
-            Button(action: {
-                globalData.isOnboardingCompleted = true
-            }) {
-                Text("Already have an account? Login")
-                    .foregroundColor(.blue)
-            }
-
-            Spacer()
-        }
-        .alert(isPresented: $showAlert) {
-            Alert(title: Text("Error"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
         }
     }
 
@@ -128,6 +120,38 @@ struct SignUpView: View {
                 globalData.isLoggedIn = true
             }
         }
+    }
+}
+
+struct InputField: View {
+    var title: String
+    @Binding var value: String
+    var isSecure: Bool = false
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(title)
+                .font(.headline)
+                .fontWeight(.medium)
+                .foregroundColor(.black)
+                .padding(.leading, 20.0)
+            if isSecure {
+                SecureField("Enter here", text: $value)
+                    .padding()
+                    .background(Color.white.opacity(0.7))
+                    .cornerRadius(10)
+                    .shadow(radius: 2)
+                    .padding(.horizontal)
+            } else {
+                TextField("Enter here", text: $value)
+                    .padding()
+                    .background(Color.white.opacity(0.7))
+                    .cornerRadius(10)
+                    .shadow(radius: 2)
+                    .padding(.horizontal)
+            }
+        }
+        .padding(.horizontal, 20)
     }
 }
 

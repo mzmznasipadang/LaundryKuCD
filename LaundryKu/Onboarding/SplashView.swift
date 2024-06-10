@@ -9,32 +9,32 @@ import Foundation
 import SwiftUI
 
 struct SplashView: View {
-    @State private var isActive = false
-    @State private var size = 0.1
-    @State private var opacity = 0.5
     @EnvironmentObject var globalData: GlobalData
-    
+    @State private var isActive = false
+
     var body: some View {
-        if isActive {
-            if globalData.isLoggedIn {
-                HomeView().environmentObject(globalData)
-            } else {
-                OnboardingView().environmentObject(globalData)
-            }
-        } else {
-            ZStack {
-                Color.white
-                    .ignoresSafeArea()
-                VStack {
-                    Image("logo")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 200, height: 200)
-                    Text("LaundryKu")
-                        .font(.largeTitle)
-                        .fontWeight(.semibold)
-                        .foregroundColor(Color("AccentColor"))
+        Group {
+            if isActive {
+                if globalData.isLoggedIn {
+                    HomeView().environmentObject(globalData)
+                } else if globalData.isOnboardingCompleted {
+                    LoginView().environmentObject(globalData)
+                } else {
+                    OnboardingView().environmentObject(globalData)
                 }
+            } else {
+                ZStack {
+                    Color.white.ignoresSafeArea()
+                    VStack {
+                        Image("logo").resizable().scaledToFit().frame(width: 200, height: 200)
+                        Text("LaundryKu").font(.largeTitle).fontWeight(.semibold).foregroundColor(Color.blue)
+                    }
+                }
+            }
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) { // Increased delay to ensure splash is visible longer
+                self.isActive = true
             }
         }
     }

@@ -17,15 +17,35 @@ import UIKit
 import FirebaseCore
 import FirebaseFirestore
 import GoogleSignIn
+import FirebaseAuth
+import FirebaseAppCheck
+import AppCheckCore
 
-class AppDelegate: NSObject, UIApplicationDelegate {
-    func application(_ application: UIApplication,
-                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    var window: UIWindow?
+    let globalData = GlobalData()
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+        globalData.initializeAuth()  // Now safe to call after Firebase is configured
+        #if DEBUG
+        let providerFactory = AppCheckDebugProviderFactory()
+        AppCheck.setAppCheckProviderFactory(providerFactory)
+        #endif
         return true
     }
-
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        return GIDSignIn.sharedInstance.handle(url)
+    
+    private func updateGlobalData(user: User?) {
+        if let user = user {
+            globalData.isLoggedIn = true
+            globalData.userName = user.displayName
+            globalData.userEmail = user.email
+            globalData.userProfileImageURL = user.photoURL
+            print("FirebaseAuthListener: User signed in: \(user.email ?? "No Email")")
+        } else {
+            globalData.isLoggedIn = false
+            print("FirebaseAuthListener: No user is signed in")
+        }
+        print("FirebaseAuthListener: isLoggedIn = \(globalData.isLoggedIn)")
     }
 }

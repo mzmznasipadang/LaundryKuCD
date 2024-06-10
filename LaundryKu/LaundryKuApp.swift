@@ -11,20 +11,21 @@ import GoogleSignIn
 
 @main
 struct LaundryKuApp: App {
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @StateObject private var globalData = GlobalData()
 
     var body: some Scene {
         WindowGroup {
-            NavigationStack {
-                if globalData.isLoggedIn {
-                    HomeView().environmentObject(globalData)
-                } else if globalData.isOnboardingCompleted {
-                    LoginView().environmentObject(globalData)
-                } else {
-                    OnboardingView().environmentObject(globalData)
+            SplashView()
+                .environmentObject(globalData)
+                .onAppear {
+                    setupGlobalData()
                 }
-            }
         }
+    }
+
+    func setupGlobalData() {
+        // Initialize any additional global data here if needed
+        print("GlobalData initialized with isOnboardingCompleted = \(globalData.isOnboardingCompleted)")
     }
 }

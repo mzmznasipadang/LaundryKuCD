@@ -8,26 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var isOnboardingComplete = false
-    @State private var isLoggedIn = false
+    @EnvironmentObject var globalData: GlobalData
 
     var body: some View {
-        if !isOnboardingComplete {
+        if !globalData.isOnboardingCompleted {
             OnboardingView()
                 .onAppear {
-                    // Simulate onboarding completion after delay
+                    // You might want to remove the delay here and trigger completion via a button or an action within OnboardingView
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        isOnboardingComplete = true
+                        globalData.completeOnboarding()
                     }
                 }
-        } else if !isLoggedIn {
+        } else if !globalData.isLoggedIn {
             LoginView()
-                .onAppear {
-                    // Simulate login after delay
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        isLoggedIn = true
-                    }
-                }
         } else {
             HomeView()
         }
@@ -36,6 +29,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView().environmentObject(GlobalData())
     }
 }
